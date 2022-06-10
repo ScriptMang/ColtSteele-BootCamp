@@ -1,0 +1,50 @@
+<%layout('layouts/boilerplate')%>
+    <div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+         <form action="/campgrounds/<%=campground._id %>?_method=PUT" method = "POST" class='validated-form' novalidate>
+            <div class = "mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class= "form-control" type="text" id="title" name="campground[title]" value="<%=campground.title%>" required>
+                    <div class="invalid-feedback">
+                     "Insert Camp" Name   
+                </div>
+            </div> 
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class= "form-control" type="text" id="location" name="campground[location]" value="<%= campground.location%>" required>
+                <div class="invalid-feedback">
+                      City, State
+                </div>
+            </div> 
+            <div class="mb-3">
+                <label class="form-label" for="image">IMG URL</label>
+                <input class= "form-control" type="text" id="image" name="campground[image]" value="<%=campground.image%>" required>
+                <div class="invalid-feedback">
+                     URL to Picture
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Campground Price</label>
+                <div class="input-group">
+                      <span class="input-group-text" id="price-label">$</span>
+                      <input type="text" class="form-control" id= "price" placeholder="0.00" aria-label="price-label" aria-describedby="price-label" name="campground[price]" value="<%=campground.price%>" required>
+                  <div class="invalid-feedback">
+                     Invalid, Dollar Amount Only
+                  </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class= "form-control" type="text" id="description" name="campground[description]" required><%=campground.description%></textarea>
+                <div class="invalid-feedback">
+                     Cannot Leave Space Blank
+                </div>
+             </div>
+            <div class="mb-3">
+                <button class="btn btn-primary">Update Campground</button>
+            </div>
+        </form>
+        <a href="/campgrounds">Back To Campgrounds</a>
+    </div>
+</div>
