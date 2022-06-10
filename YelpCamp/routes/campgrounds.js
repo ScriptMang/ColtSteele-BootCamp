@@ -3,14 +3,16 @@ const catchAsync = require('../helpers/CatchAsyncError');
 const router = express.Router();
 const {isLoggedIn , isAuthor, validateCampground} = require('../middleware')
 const campgrounds = require('../controllers/campgrounds');
-const { response } = require('express');
 
 router.route('/')
     .get(catchAsync(campgrounds.index))
-    .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
+    // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
+    .post((req, resp) => {resp.send(req.body);});
     
-router.get('/new', isLoggedIn, campgrounds.showNewCampgroundForm);
 
+
+
+router.get('/new', isLoggedIn, campgrounds.showNewCampgroundForm);
 router.route('/:id')
     .get(catchAsync(campgrounds.showCampground))
     .put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground))
