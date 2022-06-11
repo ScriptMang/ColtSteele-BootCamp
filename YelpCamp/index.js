@@ -13,9 +13,6 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ExpressError = require('./helpers/ExpressError');
 const methodOverride = require('method-override');
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');;
-const multer = require('multer');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local')
