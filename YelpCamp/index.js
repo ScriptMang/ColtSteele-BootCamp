@@ -1,3 +1,10 @@
+if(process.envNode !== "production") {
+    require('dotenv').config();
+}
+
+// console.log(process.env.SECRET)
+// console.log(process.env.API_KEY)
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -6,6 +13,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ExpressError = require('./helpers/ExpressError');
 const methodOverride = require('method-override');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');;
+const multer = require('multer');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local')
