@@ -17,10 +17,14 @@
                       City, State
                 </div>
             </div> 
+           
             <div class="mb-3">
-                <label class="form-label" for="image">Add Imgs</label>
-                <input type="file" name="image" id="image" multiple>
-            </div>
+                <label class="form-label" for="description">Description</label>
+                <textarea class= "form-control" type="text" id="description" name="campground[description]" required><%=campground.description%></textarea>
+                <div class="invalid-feedback">
+                     Cannot Leave Space Blank
+                </div>
+             </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Campground Price</label>
                 <div class="input-group">
@@ -31,13 +35,19 @@
                   </div>
                 </div>
             </div>
+          <div class="mb-3">
+                <label for="image" class="form-label" >Add Images</label>
+                <input class="form-control" name = "image" type="file" id="image" multiple>
+         </div> 
             <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class= "form-control" type="text" id="description" name="campground[description]" required><%=campground.description%></textarea>
-                <div class="invalid-feedback">
-                     Cannot Leave Space Blank
-                </div>
-             </div>
+                <% campground.images.forEach(function(img, i) {%>
+                    <img src="<%=img.url%>" class= "img-thumbnail" alt=" ">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id = "img-<%=i%>" name = "deleteImages[]" value="<%=img.filename%>">
+                    </div>
+                    <label for="img-<%=i%>">Delete?</label>
+                <%})%>
+            </div>
             <div class="mb-3">
                 <button class="btn btn-primary">Update Campground</button>
             </div>
