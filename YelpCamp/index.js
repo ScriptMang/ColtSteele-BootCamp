@@ -2,9 +2,6 @@ if(process.envNode !== "production") {
     require('dotenv').config();
 }
 
-// console.log(process.env.SECRET)
-// console.log(process.env.API_KEY)
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -43,11 +40,13 @@ app.use(mongoSanitize({
 ));
 
 const sessionConfig = {
+    name: "session",
     secret: 'thisissupersecret',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + (1000*60*60*24*7),
         maxAge: (1000*60*60*24*7)
     }
